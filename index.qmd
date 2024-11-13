@@ -1,0 +1,47 @@
+---
+title: "My first slides"
+subtitle: "Dataviz of gapminder"
+author: "Andrea Rivera"
+format: revealjs
+editor: visual
+---
+
+## Loading data
+
+We will load gampinder included in the R package.
+
+```{r}
+library (gapminder)
+gapminder
+```
+
+---
+
+## Preprocess data
+
+```{r}
+#| echo: TRUE
+
+library(dplyr)
+
+gapminder_2007 <- 
+  gapminder |> 
+  filter(year == 2007)
+
+gapminder_2007
+```
+
+---
+
+## Plot the data
+
+```{r}
+#| echo: TRUE
+#| code-fold: true
+library(ggplot2)
+
+ggplot(gapminder_2007)+
+  geom_point(aes(x = lifeExp, y = gdpPercap, color = continent)) +
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+```
